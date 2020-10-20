@@ -13,10 +13,7 @@ class UserController extends Controller
 
         $articles = $user->articles->sortByDesc('created_at');
 
-        return view('users.show', [
-            'user' => $user,
-            'articles' => $articles,
-        ]);
+        return view('users.show', compact('user', 'articles'));
     }
 
     public function likes(string $name)
@@ -25,10 +22,7 @@ class UserController extends Controller
 
         $articles = $user->likes->sortByDesc('created_at');
 
-        return view('users.likes', [
-            'user' => $user,
-            'articles' => $articles,
-        ]);
+        return view('users.likes', compact('user', 'articles'));
     }
 
     public function followings(string $name)
@@ -37,10 +31,7 @@ class UserController extends Controller
 
         $followings = $user->followings->sortByDesc('created_at');
 
-        return view('users.followings', [
-            'user' => $user,
-            'followings' => $followings,
-        ]);
+        return view('users.followings', compact('user', 'followings'));
     }
 
     public function followers(string $name)
@@ -49,11 +40,9 @@ class UserController extends Controller
 
         $followers = $user->followers->sortByDesc('created_at');
 
-        return view('users.followers', [
-            'user' => $user,
-            'followers' => $followers,
-        ]);
+        return view('users.followers', compact('user', 'followers'));
     }
+
     public function follow(Request $request, string $name)
     {
         $user = User::where('name', $name)->first();

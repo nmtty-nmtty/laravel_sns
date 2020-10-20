@@ -27,9 +27,7 @@ class ArticleController extends Controller
             return ['text' => $tag->name];
         });
 
-        return view('articles.create', [
-            'allTagNames' => $allTagNames,
-        ]);
+        return view('articles.create', compact('allTagNames'));
     }
 
     public function store(ArticleRequest $request, Article $article)
